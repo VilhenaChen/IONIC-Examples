@@ -7,6 +7,15 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  input:string;
+  output:string;
+
+  constructor() {
+    
+  }
+
+  onClick() {
+    this.output = this.input;
+  }
 
 }
