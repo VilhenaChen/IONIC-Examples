@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>listaImagens</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let fruto of fruta">
+          <ion-avatar slot="start">
+            <ion-img [src]="fruto.urlImagem"></ion-img> 
+          </ion-avatar>
+          <ion-label class="ion-text-center">{{fruto.titulo}}</ion-label>
+          <ion-label>{{fruto.quantidade}}</ion-label>
+        </ion-item>
+      </ion-list>
+  </ion-card-content>
+</ion-card>
+</ion-content>

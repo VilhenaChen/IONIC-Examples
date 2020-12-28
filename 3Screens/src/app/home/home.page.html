@@ -1,14 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <ion-button color="success">Lista de Numeros</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button color="success">Lista com um Array</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button color="success">Lista com imagens</ion-button>
+      <ion-col size-md="6" offset-md="3">
+        <ion-card>
+          <ion-card-content>
+            <div class="ion-text-center ion-margin-vertical">
+              <div><ion-button color="success" [routerLink]="['./lista-numeros']">Lista de Numeros</ion-button></div>
+              <div><ion-button color="success" [routerLink]="['./lista-array']">Lista com um Array</ion-button></div>
+              <div><ion-button color="success" [routerLink]="['./lista-imagens']">Lista com imagens</ion-button></div> 
+            </div>   
+          </ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
