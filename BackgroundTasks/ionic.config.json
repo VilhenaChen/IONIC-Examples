@@ -1,5 +1,7 @@
 {
   "name": "BackgroundTasks",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
