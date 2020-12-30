@@ -19,17 +19,19 @@ export class BackService {
     this.stop = true;
   }
 
-  start()
+  async start()
   {
-    //while(this.stop == false){
-    this.lowestNbr++;
-    this.highestNbr--;
-    this.lowest.next(this.lowestNbr);
-    this.highest.next(this.highestNbr);
-    //this.delay(10000);}
+    while(this.stop == false){
+      this.lowestNbr++;
+      this.highestNbr--;
+      this.lowest.next(this.lowestNbr);
+      this.highest.next(this.highestNbr);
+      await this.delay(10000);
+    }
   }
 
   delay(milisegundos:number) {
+    console.log("oi");
     return new Promise(resolve=>{setTimeout(resolve,milisegundos);});
   }
 
