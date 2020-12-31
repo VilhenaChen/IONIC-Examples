@@ -1,5 +1,7 @@
 {
   "name": "3Screens",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

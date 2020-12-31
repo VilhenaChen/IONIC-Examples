@@ -1,5 +1,7 @@
 {
   "name": "TextToText",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
