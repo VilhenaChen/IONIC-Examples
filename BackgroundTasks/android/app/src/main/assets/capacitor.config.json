@@ -9,5 +9,8 @@
       "launchShowDuration": 0
     }
   },
-  "cordova": {}
+  "cordova": {},
+  
+  "linuxAndroidStudioPath": "/home/iteixas/Android Studio/android-studio-ide-201.6858069-linux/android-studio/bin/studio.sh"
+  
 }
