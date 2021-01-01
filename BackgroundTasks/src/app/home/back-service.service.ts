@@ -38,9 +38,7 @@ export class BackService {
         this.highestNbr = json['highest'];
         this.lowest.next(this.lowestNbr);
         this.highest.next(this.highestNbr);
-        console.log('a');
       }
-      console.log( );
       
       if(this.primeiro == true){
       await loadNumeros();
@@ -53,13 +51,10 @@ export class BackService {
       this.highest.next(this.highestNbr);
       //this.file.writeFile(this.file.externalApplicationStorageDirectory,'numeros2.json',JSON.stringify({'lowest' : this.lowestNbr, 'highest': this.highestNbr} ),{replace:true});
       //this.file.writeFile('./','numeros2.json',JSON.stringify({'lowest' : this.lowestNbr, 'highest': this.highestNbr} ),{replace:true});
-      console.log('ta');
-      
     }
   }
 
   delay(milisegundos:number) {
-    console.log("oi");
     return new Promise(resolve=>{setTimeout(resolve,milisegundos);});
   }
 
