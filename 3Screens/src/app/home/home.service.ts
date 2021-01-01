@@ -128,15 +128,5 @@ export class HomeService {
     return [...this.fruta];
   }
 
-  getFruto(frutoId: string)
-  {
-    return{
-      ...this.fruta.find(fruto=> 
-        {
-          return fruto.id === frutoId;
-        }) // dentro do find função sem nome que compara fruto.id com frutoID(inclusive o tipo daí os 3 =) caso essa função devolva true o find para de procurar
-    }
-  }
 
-  
 }
