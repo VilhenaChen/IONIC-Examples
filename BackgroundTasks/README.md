@@ -2,7 +2,8 @@
 Is this example we can see the usage of background tasks.
 When the button "start" is pressed the app tries to read a file with two numbers, if the files does not exist it will make to random numbers between 10000 and 99999.
 Every 10s the first number will increase and the last number will decreased.
-This will go on until the user presses the "stop" button
+This will go on until the user presses the "stop" button.
+
 ![Alt Text](https://media.giphy.com/media/hnIsfdpoTSGx0LDWTx/giphy.gif)
 
 ## How to compile & run
