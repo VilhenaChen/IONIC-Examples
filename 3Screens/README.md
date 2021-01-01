@@ -4,6 +4,7 @@ This example shows how we can switch between pages, and see different types of l
  - List with numbers;
  - List with an array of words;
  - List with images, text, and a number.
+ 
  ![Alt Text](https://media.giphy.com/media/qe46ouCEhdtEq9LrTr/giphy.gif)
 
 ## How to compile & run
