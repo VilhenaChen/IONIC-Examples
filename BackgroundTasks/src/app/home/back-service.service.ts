@@ -2,55 +2,83 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import {Plugins, FilesystemDirectory, FilesystemEncoding} from '@capacitor/core'
 
-
+const{Filesystem} = Plugins;
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackService {
 
-  
-  
-  private lowestNbr : number;
-  private highestNbr : number;
-  private lowest : BehaviorSubject<number>;
-  private highest : BehaviorSubject<number>;
+  private firstNbr : number;
+  private secondNbr : number;
+  private maxRand : number = 99999;
+  private minRand : number = 10000;
+  private first : BehaviorSubject<number>;
+  private second : BehaviorSubject<number>;
   private stop : boolean;
-  private primeiro : boolean;
-  constructor(/*private file : File*/) { 
-    console.log('inicio');                                                                                                                      
-    this.lowestNbr = 10000;
-    this.highestNbr = 99999;
-    this.lowest = new BehaviorSubject<number>(this.lowestNbr);
-    this.highest = new BehaviorSubject<number>(this.highestNbr);
+  private numeros : string[];
+  private cont : number;
+  private leu: boolean = true;
+
+
+  constructor() {                                                                                                                     
+    this.firstNbr = Math.floor(Math.random() * (this.maxRand - this.minRand +1) + this.minRand);
+    this.secondNbr = Math.floor(Math.random() * (this.maxRand - this.minRand +1) )+ this.minRand;
+    console.log(this.firstNbr);
+    this.first = new BehaviorSubject<number>(this.firstNbr);
+    this.second = new BehaviorSubject<number>(this.secondNbr);
     this.stop = true;
-    this.primeiro = true;
+    this.cont = 0;
   }
 
   async start()
   {
     while(this.stop == false){
-      const loadNumeros = async() =>{
-        const response = await fetch('./assets/numeros.json');
-        const json = await response.json();
-        this.lowestNbr = json['lowest'];
-        this.highestNbr = json['highest'];
-        this.lowest.next(this.lowestNbr);
-        this.highest.next(this.highestNbr);
+      this.leu=true;
+      try{
+        console.log("aqui");
+        let contents = await Filesystem.readFile({
+          path: 'numeros.txt',
+          directory: FilesystemDirectory.Documents,
+          encoding: FilesystemEncoding.UTF8
+        });
+        console.log(contents.data);
+        this.numeros = await contents.data.toString().split(","); 
+        console.log("depois");
+      }catch(e) {
+        console.error('Unable to read file', e);
+        this.leu = false;
       }
       
-      if(this.primeiro == true){
-      await loadNumeros();
-      this.primeiro = false;}
-      await this.delay(10000);
+      if(this.leu === true){
+        console.log('vim aqui');
+        console.log(this.numeros.values().next())
+        this.firstNbr = Number(this.numeros[0]);
+        this.secondNbr = Number(this.numeros[1]);
+      }
       
-      this.lowestNbr++;
-      this.highestNbr--;
-      this.lowest.next(this.lowestNbr);
-      this.highest.next(this.highestNbr);
-      //this.file.writeFile(this.file.externalApplicationStorageDirectory,'numeros2.json',JSON.stringify({'lowest' : this.lowestNbr, 'highest': this.highestNbr} ),{replace:true});
-      //this.file.writeFile('./','numeros2.json',JSON.stringify({'lowest' : this.lowestNbr, 'highest': this.highestNbr} ),{replace:true});
+      await this.first.next(this.firstNbr);
+      await this.second.next(this.secondNbr);
+      
+      await this.delay(3000);
+      
+      this.firstNbr++;
+      this.secondNbr--;
+
+      try {
+        const result = await Filesystem.writeFile({
+          path: 'numeros.txt',
+          data: (this.firstNbr.toString() + "," + this.secondNbr.toString()),
+          directory: FilesystemDirectory.Documents,
+          encoding: FilesystemEncoding.UTF8
+        })
+        console.log('Wrote file', result);
+      } catch(e) {
+        console.error('Unable to write file', e);
+      }
+      
     }
   }
 
@@ -58,12 +86,12 @@ export class BackService {
     return new Promise(resolve=>{setTimeout(resolve,milisegundos);});
   }
 
-  getLowest() : Observable<number>{
-    return this.lowest.asObservable();
+  getFirst() : Observable<number>{
+    return this.first.asObservable();
   }
 
-  getHighest(): Observable<number>{
-    return this.highest.asObservable();
+  getSecond(): Observable<number>{
+    return this.second.asObservable();
   }
 
   setStop(status: boolean){

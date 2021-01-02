@@ -11,13 +11,13 @@ import { Toast } from '@capacitor/core';
 })
 export class HomePage implements OnInit {
 
-  lowest : number;
-  highest : number;
+  first : number;
+  second : number;
   constructor(/*private file: File*/private backService:BackService) {}
 
   ngOnInit(){
-    this.backService.getLowest().subscribe((value)=>{this.lowest=value});
-    this.backService.getHighest().subscribe((value)=>{this.highest=value});
+    this.backService.getFirst().subscribe((value)=>{this.first=value});
+    this.backService.getSecond().subscribe((value)=>{this.second=value});
   }
 
   onStart(){
