@@ -1,6 +1,8 @@
 ﻿# IONIC Examples
 This repo stores 3 examples of apps made with IONIC and Angular framework, it was used for an investigation work of Mobile Applications subject
-Every example, in is README, has an explication of what it does, and how you can execute the code.
+
+Every example, in its README, has an explication of what it does, and how you can execute the code.
+
 Hope you can learn something with these 3 examples, and also, check out the amazing IONIC [documentation](https://ionicframework.com/docs)
 
 ## [First Example - Text to Text](https://github.com/VilhenaChen/IONIC-Examples/tree/main/TextToText)
