@@ -92,4 +92,8 @@ export class BackService {
   setStop(status: boolean){
     this.stop = status;
   }
+
+  getStop(){
+    return this.stop;
+  }
 }

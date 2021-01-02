@@ -21,8 +21,10 @@ export class HomePage implements OnInit {
   }
 
   onStart(){
-    this.backService.setStop(false);
-    this.backService.start();
+    if(this.backService.getStop() == true){
+      this.backService.setStop(false);
+      this.backService.start();
+    }
   }
 
   onStop(){
