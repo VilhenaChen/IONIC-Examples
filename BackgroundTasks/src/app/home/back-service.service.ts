@@ -19,42 +19,37 @@ export class BackService {
   private second : BehaviorSubject<number>;
   private stop : boolean;
   private numeros : string[];
-  private cont : number;
   private leu: boolean = true;
 
 
   constructor() {                                                                                                                     
-    this.firstNbr = Math.floor(Math.random() * (this.maxRand - this.minRand +1) + this.minRand);
-    this.secondNbr = Math.floor(Math.random() * (this.maxRand - this.minRand +1) )+ this.minRand;
-    console.log(this.firstNbr);
+    this.firstNbr = 0;
+    this.secondNbr = 0;
     this.first = new BehaviorSubject<number>(this.firstNbr);
     this.second = new BehaviorSubject<number>(this.secondNbr);
     this.stop = true;
-    this.cont = 0;
   }
 
   async start()
   {
     while(this.stop == false){
+      
       this.leu=true;
       try{
-        console.log("aqui");
         let contents = await Filesystem.readFile({
           path: 'numeros.txt',
           directory: FilesystemDirectory.Documents,
           encoding: FilesystemEncoding.UTF8
         });
-        console.log(contents.data);
         this.numeros = await contents.data.toString().split(","); 
-        console.log("depois");
       }catch(e) {
         console.error('Unable to read file', e);
         this.leu = false;
+        this.firstNbr = Math.floor(Math.random() * (this.maxRand - this.minRand +1) + this.minRand);
+        this.secondNbr = Math.floor(Math.random() * (this.maxRand - this.minRand +1) )+ this.minRand;
       }
       
       if(this.leu === true){
-        console.log('vim aqui');
-        console.log(this.numeros.values().next())
         this.firstNbr = Number(this.numeros[0]);
         this.secondNbr = Number(this.numeros[1]);
       }
@@ -62,7 +57,7 @@ export class BackService {
       await this.first.next(this.firstNbr);
       await this.second.next(this.secondNbr);
       
-      await this.delay(3000);
+      await this.delay(10000);
       
       this.firstNbr++;
       this.secondNbr--;
